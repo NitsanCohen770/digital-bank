@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { noCase } from 'change-case';
 import { useRef, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { set, sub, formatDistanceToNow } from 'date-fns';
+import { set, sub, formatDistanceToNowStrict } from 'date-fns';
 import { Icon } from '@iconify/react';
 import bellFill from '@iconify/icons-eva/bell-fill';
 import clockFill from '@iconify/icons-eva/clock-fill';
@@ -36,17 +36,17 @@ import MenuPopover from '../../components/MenuPopover';
 const NOTIFICATIONS = [
   {
     id: faker.datatype.uuid(),
-    title: 'Your order is placed',
-    description: 'waiting for shipping',
+    title: 'קיבלת הודעה מהבנקאי',
+    description: 'שלום ניצן! שיהיה לך יום נפלא, תודה שאתה לקוח שלנו',
     avatar: null,
-    type: 'order_placed',
+    type: 'mail',
     createdAt: set(new Date(), { hours: 10, minutes: 30 }),
     isUnRead: true
   },
   {
     id: faker.datatype.uuid(),
-    title: faker.name.findName(),
-    description: 'answered to your comment on the Minimal',
+    title: 'בקשת העברה מיונתן זליצקי',
+    description: 'שלם לי בבקשה על הפיצה שהזמנתי לך ',
     avatar: mockImgAvatar(2),
     type: 'friend_interactive',
     createdAt: sub(new Date(), { hours: 3, minutes: 30 }),
@@ -54,8 +54,8 @@ const NOTIFICATIONS = [
   },
   {
     id: faker.datatype.uuid(),
-    title: 'You have new message',
-    description: '5 unread messages',
+    title: 'עוד הודעה נפלאה',
+    description: 'את ההודעה הזו כבר קראת',
     avatar: null,
     type: 'chat_message',
     createdAt: sub(new Date(), { days: 1, hours: 3, minutes: 30 }),
@@ -63,8 +63,8 @@ const NOTIFICATIONS = [
   },
   {
     id: faker.datatype.uuid(),
-    title: 'You have new mail',
-    description: 'sent from Guido Padberg',
+    title: 'יש לך דף חשבון חדש',
+    description: 'לחץ לפרטים',
     avatar: null,
     type: 'mail',
     createdAt: sub(new Date(), { days: 2, hours: 3, minutes: 30 }),
@@ -83,10 +83,10 @@ const NOTIFICATIONS = [
 
 function renderContent(notification) {
   const title = (
-    <Typography variant="subtitle2">
+    <Typography display="flex" variant="subtitle2">
       {notification.title}
       <Typography component="span" variant="body2" sx={{ color: 'text.secondary' }}>
-        &nbsp; {noCase(notification.description)}
+        &nbsp; {notification.description}
       </Typography>
     </Typography>
   );
@@ -142,9 +142,6 @@ function NotificationItem({ notification }) {
         })
       }}
     >
-      <ListItemAvatar>
-        <Avatar sx={{ bgcolor: 'background.neutral' }}>{avatar}</Avatar>
-      </ListItemAvatar>
       <ListItemText
         primary={title}
         secondary={
@@ -153,15 +150,35 @@ function NotificationItem({ notification }) {
             sx={{
               mt: 0.5,
               display: 'flex',
+              justifyContent: 'flex-end',
               alignItems: 'center',
               color: 'text.disabled'
             }}
           >
             <Box component={Icon} icon={clockFill} sx={{ mr: 0.5, width: 16, height: 16 }} />
-            {formatDistanceToNow(new Date(notification.createdAt))}
+            {formatDistanceToNowStrict(new Date(notification.createdAt))
+              .split(' ')
+              .map((timeItem, index) => {
+                if (index === 0) {
+                  return timeItem;
+                }
+                if (timeItem === 'hours') {
+                  return 'שעות ';
+                }
+                if (timeItem === 'days') {
+                  return 'ימים ';
+                }
+                if (timeItem === 'day') {
+                  return 'יום ';
+                }
+                return null;
+              })}
           </Typography>
         }
       />
+      <ListItemAvatar>
+        <Avatar sx={{ bgcolor: 'background.neutral' }}>{avatar}</Avatar>
+      </ListItemAvatar>
     </ListItemButton>
   );
 }
@@ -215,9 +232,9 @@ export default function NotificationsPopover() {
       >
         <Box sx={{ display: 'flex', alignItems: 'center', py: 2, px: 2.5 }}>
           <Box sx={{ flexGrow: 1 }}>
-            <Typography variant="subtitle1">Notifications</Typography>
+            <Typography variant="subtitle1">הודעות</Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              You have {totalUnRead} unread messages
+              יש לך {totalUnRead} הודעות שלא נקראו
             </Typography>
           </Box>
 
@@ -237,7 +254,7 @@ export default function NotificationsPopover() {
             disablePadding
             subheader={
               <ListSubheader disableSticky sx={{ py: 1, px: 2.5, typography: 'overline' }}>
-                New
+                חדש
               </ListSubheader>
             }
           >
@@ -250,7 +267,7 @@ export default function NotificationsPopover() {
             disablePadding
             subheader={
               <ListSubheader disableSticky sx={{ py: 1, px: 2.5, typography: 'overline' }}>
-                Before that
+                הודעות שנקראו
               </ListSubheader>
             }
           >
@@ -264,7 +281,7 @@ export default function NotificationsPopover() {
 
         <Box sx={{ p: 1 }}>
           <Button fullWidth disableRipple component={RouterLink} to="#">
-            View All
+            הצג הכל
           </Button>
         </Box>
       </MenuPopover>

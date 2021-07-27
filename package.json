@@ -1,7 +1,6 @@
 {
-  "name": "@minimal/material-kit-react",
-  "author": "minimals.cc",
-  "licence": "MIT",
+  "name": "@digital-bank",
+  "author": "nitsan cohen",
   "version": "1.0.0",
   "private": false,
   "scripts": {

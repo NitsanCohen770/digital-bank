@@ -1,6 +1,5 @@
 import { filter } from 'lodash';
 import { Icon } from '@iconify/react';
-import { sentenceCase } from 'change-case';
 import { useState } from 'react';
 import plusFill from '@iconify/icons-eva/plus-fill';
 import { Link as RouterLink } from 'react-router-dom';
@@ -32,11 +31,11 @@ import USERLIST from '../_mocks_/user';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'name', label: 'Name', alignRight: false },
-  { id: 'company', label: 'Company', alignRight: false },
-  { id: 'role', label: 'Role', alignRight: false },
-  { id: 'isVerified', label: 'Verified', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false },
+  { id: 'name', label: 'שם', alignRight: false },
+  { id: 'company', label: 'סכום העברה', alignRight: false },
+  { id: 'role', label: 'בנק ', alignRight: false },
+  { id: 'isVerified', label: 'סטאטוס אישור', alignRight: false },
+  { id: 'status', label: 'סוג העברה', alignRight: false },
   { id: '' }
 ];
 
@@ -132,19 +131,19 @@ export default function User() {
   const isUserNotFound = filteredUsers.length === 0;
 
   return (
-    <Page title="User | Minimal-UI">
+    <Page title="פירוט הוצאות והכנסות | הבנק הדיגיטלי הראשון">
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            User
+            פירוט העברות
           </Typography>
           <Button
             variant="contained"
             component={RouterLink}
             to="#"
-            startIcon={<Icon icon={plusFill} />}
+            endIcon={<Icon icon={plusFill} />}
           >
-            New User
+            העברה חדשה
           </Button>
         </Stack>
 
@@ -199,18 +198,14 @@ export default function User() {
                           </TableCell>
                           <TableCell align="left">{company}</TableCell>
                           <TableCell align="left">{role}</TableCell>
-                          <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
+                          <TableCell align="left">{isVerified ? 'כן' : 'לא'}</TableCell>
                           <TableCell align="left">
                             <Label
                               variant="ghost"
-                              color={(status === 'banned' && 'error') || 'success'}
+                              color={(status === 'הוצאה' && 'error') || 'success'}
                             >
-                              {sentenceCase(status)}
+                              {status}
                             </Label>
-                          </TableCell>
-
-                          <TableCell align="right">
-                            <UserMoreMenu />
                           </TableCell>
                         </TableRow>
                       );
@@ -236,6 +231,7 @@ export default function User() {
 
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
+            labelRowsPerPage="אורך רשימה"
             component="div"
             count={USERLIST.length}
             rowsPerPage={rowsPerPage}

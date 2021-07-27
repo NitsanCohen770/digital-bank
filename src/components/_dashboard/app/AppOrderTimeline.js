@@ -37,7 +37,7 @@ const TIMELINES = [
     type: 'order4'
   },
   {
-    title: 'העברה מחשבון 34242 מזרחי טפחות',
+    title: 'הכנסה מחשבון 34242 מזרחי טפחות',
     time: faker.date.past().getDate(),
     type: 'order2'
   }

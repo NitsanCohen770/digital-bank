@@ -66,7 +66,7 @@ export default function Searchbar() {
               autoFocus
               fullWidth
               disableUnderline
-              placeholder="Search…"
+              placeholder="חפש…"
               startAdornment={
                 <InputAdornment position="start">
                   <Box
@@ -79,7 +79,7 @@ export default function Searchbar() {
               sx={{ mr: 1, fontWeight: 'fontWeightBold' }}
             />
             <Button variant="contained" onClick={handleClose}>
-              Search
+              חפש
             </Button>
           </SearchbarStyle>
         </Slide>
