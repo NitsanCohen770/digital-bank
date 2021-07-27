@@ -72,8 +72,8 @@ const NOTIFICATIONS = [
   },
   {
     id: faker.datatype.uuid(),
-    title: 'Delivery processing',
-    description: 'Your order is being shipped',
+    title: 'הלוואה ברגע! ',
+    description: 'מותאמת במיוחד בשבילך, עכשיו בתנאים נוחים',
     avatar: null,
     type: 'order_shipped',
     createdAt: sub(new Date(), { days: 3, hours: 3, minutes: 30 }),
