@@ -1,8 +1,5 @@
 {
-  "name": "@digital-bank",
-  "author": "nitsan cohen",
-  "version": "1.0.0",
-  "private": false,
+
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
