@@ -17,29 +17,29 @@ import { fDateTime } from '../../../utils/formatTime';
 
 const TIMELINES = [
   {
-    title: '1983, orders, $4220',
+    title: 'הכנסה מחשבון 342342 בנק הפועלים',
     time: faker.date.past(),
     type: 'order1'
   },
   {
-    title: '12 Invoices have been paid',
+    title: 'הכנסת משכורת מחשבון 334242 בנק לאומי',
     time: faker.date.past(),
     type: 'order2'
   },
   {
-    title: 'Order #37745 from September',
-    time: faker.date.past(),
-    type: 'order3'
-  },
-  {
-    title: 'New order placed #XF-2356',
+    title: 'העברה לחשבון 34342 בנק הפועלים',
     time: faker.date.past(),
     type: 'order4'
   },
   {
-    title: 'New order placed #XF-2346',
+    title: 'העברה לחשבון 22425 מזרחי טפחות',
     time: faker.date.past(),
-    type: 'order5'
+    type: 'order4'
+  },
+  {
+    title: 'העברה מחשבון 34242 מזרחי טפחות',
+    time: faker.date.past().getDate(),
+    type: 'order2'
   }
 ];
 
@@ -86,7 +86,7 @@ export default function AppOrderTimeline() {
         }
       }}
     >
-      <CardHeader title="Order Timeline" />
+      <CardHeader title="תנועות אחרונות בחשבון" />
       <CardContent>
         <Timeline>
           {TIMELINES.map((item, index) => (

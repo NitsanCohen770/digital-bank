@@ -38,6 +38,7 @@ const ListItemIconStyle = styled(ListItemIcon)({
   width: 22,
   height: 22,
   display: 'flex',
+  flex: 'initial',
   alignItems: 'center',
   justifyContent: 'center'
 });
@@ -142,9 +143,9 @@ function NavItem({ item, active }) {
         ...(isActiveRoot && activeRootStyle)
       }}
     >
-      <ListItemIconStyle>{icon && icon}</ListItemIconStyle>
       <ListItemText disableTypography primary={title} />
       {info && info}
+      <ListItemIconStyle>{icon && icon}</ListItemIconStyle>
     </ListItemStyle>
   );
 }

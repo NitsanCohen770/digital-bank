@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react';
-import appleFilled from '@iconify/icons-ant-design/apple-filled';
+import income from '@iconify-icons/fa-solid/sign-in-alt';
 // material
 import { alpha, styled } from '@material-ui/core/styles';
 import { Card, Typography } from '@material-ui/core';
@@ -40,11 +40,11 @@ export default function AppNewUsers() {
   return (
     <RootStyle>
       <IconWrapperStyle>
-        <Icon icon={appleFilled} width={24} height={24} />
+        <Icon icon={income} width={24} height={24} />
       </IconWrapperStyle>
       <Typography variant="h3">{fShortenNumber(TOTAL)}</Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-        New Users
+        הכנסות חודשיות
       </Typography>
     </RootStyle>
   );

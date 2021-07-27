@@ -1,6 +1,5 @@
 import { Icon } from '@iconify/react';
-import androidFilled from '@iconify/icons-ant-design/android-filled';
-// material
+import shekelSign from '@iconify-icons/fa-solid/shekel-sign';
 import { alpha, styled } from '@material-ui/core/styles';
 import { Card, Typography } from '@material-ui/core';
 // utils
@@ -34,17 +33,17 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-const TOTAL = 714000;
+const TOTAL = 714141440;
 
 export default function AppWeeklySales() {
   return (
     <RootStyle>
       <IconWrapperStyle>
-        <Icon icon={androidFilled} width={24} height={24} />
+        <Icon icon={shekelSign} width={24} height={24} />
       </IconWrapperStyle>
       <Typography variant="h3">{fShortenNumber(TOTAL)}</Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-        Weekly Sales
+        מצב חשבון
       </Typography>
     </RootStyle>
   );
