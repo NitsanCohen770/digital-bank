@@ -1,5 +1,6 @@
 import { Icon } from '@iconify/react';
 import { useState } from 'react';
+
 import searchFill from '@iconify/icons-eva/search-fill';
 // material
 import { styled, alpha } from '@material-ui/core/styles';
@@ -12,6 +13,7 @@ import {
   ClickAwayListener,
   IconButton
 } from '@material-ui/core';
+import Logo from '../../components/Logo';
 
 // ----------------------------------------------------------------------
 
@@ -52,38 +54,41 @@ export default function Searchbar() {
   };
 
   return (
-    <ClickAwayListener onClickAway={handleClose}>
-      <div>
-        {!isOpen && (
-          <IconButton onClick={handleOpen}>
-            <Icon icon={searchFill} width={20} height={20} />
-          </IconButton>
-        )}
+    <>
+      <Logo navLogo />
+      <ClickAwayListener onClickAway={handleClose}>
+        <div>
+          {!isOpen && (
+            <IconButton onClick={handleOpen}>
+              <Icon icon={searchFill} width={20} height={20} />
+            </IconButton>
+          )}
 
-        <Slide direction="down" in={isOpen} mountOnEnter unmountOnExit>
-          <SearchbarStyle>
-            <Input
-              autoFocus
-              fullWidth
-              disableUnderline
-              placeholder="חפש…"
-              startAdornment={
-                <InputAdornment position="start">
-                  <Box
-                    component={Icon}
-                    icon={searchFill}
-                    sx={{ color: 'text.disabled', width: 20, height: 20 }}
-                  />
-                </InputAdornment>
-              }
-              sx={{ mr: 1, fontWeight: 'fontWeightBold' }}
-            />
-            <Button variant="contained" onClick={handleClose}>
-              חפש
-            </Button>
-          </SearchbarStyle>
-        </Slide>
-      </div>
-    </ClickAwayListener>
+          <Slide direction="down" in={isOpen} mountOnEnter unmountOnExit>
+            <SearchbarStyle>
+              <Input
+                autoFocus
+                fullWidth
+                disableUnderline
+                placeholder="חפש…"
+                startAdornment={
+                  <InputAdornment position="start">
+                    <Box
+                      component={Icon}
+                      icon={searchFill}
+                      sx={{ color: 'text.disabled', width: 20, height: 20 }}
+                    />
+                  </InputAdornment>
+                }
+                sx={{ mr: 1, fontWeight: 'fontWeightBold' }}
+              />
+              <Button variant="contained" onClick={handleClose}>
+                חפש
+              </Button>
+            </SearchbarStyle>
+          </Slide>
+        </div>
+      </ClickAwayListener>
+    </>
   );
 }
